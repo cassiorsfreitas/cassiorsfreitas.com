@@ -11,7 +11,12 @@ export default {
     extend: {
       colors: {
         black: '#08070B',
-        white: '#F8F8F2'
+        white: '#F8F8F2',
+        grey: '#8F9BA8',
+        gradient: {
+          yellow: '#FFFF80',
+          pink: '#FF80BF'
+        }
       },
       typography: {
         quoteless: {

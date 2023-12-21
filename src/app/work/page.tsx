@@ -1,5 +1,5 @@
 import React from 'react'
 
-export const Work = () => {
+export default function Work() {
   return <div>Work</div>
 }

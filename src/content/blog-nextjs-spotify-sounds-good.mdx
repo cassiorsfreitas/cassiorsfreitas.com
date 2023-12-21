@@ -1,269 +1,256 @@
 ---
-title: '2023 Blog Refresh'
-publishedAt: '2023-11-19'
-summary: 'Including some of my latest hot takes (okay they are pretty mild).'
+title: 'Blog (NextJS) + Spotify: sounds good!'
+publishedAt: '2022-06-22'
+summary: 'Spotify Web API endpoints return JSON about music artists, albums, and tracks, directly from the Spotify Data Catalogue.'
+image: '/images/nextjs-spotify/cover.jpg'
 ---
 
-I updated my blog this weekend and wanted to share some thoughts along the way:
+<Image
+  alt={`An iceberg of react frameworks, showing that while most of the time it seems it's just components and business logic, the reality is that under water there are many other things frameworks are handling for you, like authentication, rendering, routing, state management, i18n, styling, and more.`}
+  src={`/images/nextjs-spotify/cover.jpg`}
+  width={2478 / 3}
+  height={2784 / 3}
+/>
 
-- [Content Management](#content-management)
-- [Performance](#performance)
-- [Opinions](#opinions)
+A few months ago I found a really cool feature while exploring Lee Robinson's blog, VP of Developer Experience at Vercel. He connected the NextJS blog with his Spotify account and I was very curious about this integration. Fortunately, like this blog, all the code was open on Github. Well, you can freely explore the repository (and I recommend it) or for now follow this article and understand how it works.
+
+<Image
+  alt={`An iceberg of react frameworks, showing that while most of the time it seems it's just components and business logic, the reality is that under water there are many other things frameworks are handling for you, like authentication, rendering, routing, state management, i18n, styling, and more.`}
+  src={`/images/nextjs-spotify/example1.png`}
+  width={2478 / 3}
+  height={2784 / 3}
+/>
+
+First of all, based on simple REST principles, the Spotify Web API endpoints return JSON metadata about music artists, albums, and tracks, directly from the Spotify Data Catalogue. Using NextJS we can create a simple server-side application that accesses user related data through the Spotify Web API.
+
+I don't want to talk about CSS or any other styling. The purpose of this article is to quickly teach you how to make this connection and get to this point:
+
+<Image
+  alt={`An iceberg of react frameworks, showing that while most of the time it seems it's just components and business logic, the reality is that under water there are many other things frameworks are handling for you, like authentication, rendering, routing, state management, i18n, styling, and more.`}
+  src={`/images/nextjs-spotify/example2.png`}
+  width={2478 / 3}
+  height={2784 / 3}
+/>
+
+## Steps
+
+1. Create a Spotify App;
+2. Authentication and authorization;
+3. Using Spotify API
+4. Creating an API Route
+
+### Create a Spotify App
+
+First, we need to create a Spotify application to give us credentials to authenticate with the API:
+
+- Go to your **[Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)** and log in.
+- Click **Create an App**.
+- Fill out the name and description and click **create**.
+- Click **Show Client Secret**.
+- Save your Client ID and Secret. You'll need these soon.
+- Click **Edit Settings**.
+- Add **http://localhost:3000** as a redirect URI.
+
+And that is it! Uhul! 🤘
+
+### **Authentication with refresh_token**
+
+There are many types of authentication, but we are going with `refresh_token` because we only want to authenticate once.
+
+<Image
+  alt={`An iceberg of react frameworks, showing that while most of the time it seems it's just components and business logic, the reality is that under water there are many other things frameworks are handling for you, like authentication, rendering, routing, state management, i18n, styling, and more.`}
+  src={`/images/nextjs-spotify/example3.png`}
+  width={2478 / 3}
+  height={2784 / 3}
+/>
+
+### Authorization Code
+
+As you can see in the above image we have everything except [scopes](https://developer.spotify.com/documentation/general/guides/authorization/scopes/). Scopes defines what we need fetch from the Spotify API. We'll have our application request authorization by logging in with whatever **scopes** we need. Here's an example of what the URL might look like. Don't forget to swap out the **`client_id`** and scopes for your own:
+
+```txt
+https://accounts.spotify.com/authorize?client_id=8e94bde7ddb84a1f7a0e51bf3bc95be8&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:3000&scope=user-read-currently-playing%20user-top-read
+```
+
+After that, if everything is okay, you'll be redirected back to your redirect_uri. In the URL, there's a code query parameter. **Save this value**!
+
+```
+http://localhost:3000/callback?code=NApCCg..BkWtQ
+```
+
+Now, we'll need to retrieve the refresh token. In this case, you'll need to generate a Base 64 encoded string containing the client ID and secret from earlier. You can use any tool to encode it online. The format should be client_id:client_secret. Some suggestions:
+
+- [https://codebeautify.org/base64-encode](https://codebeautify.org/base64-encode)
+- [https://www.base64encode.net/](https://www.base64encode.net/)
+- [https://www.base64decode.org/](https://www.base64decode.org/)
+
+Then,
+
+```
+curl -H "Authorization: Basic <base64 encoded client_id:client_secret>"
+-d grant_type=authorization_code -d code=<code> -d redirect_uri=http%3A
+%2F%2Flocalhost:3000 https://accounts.spotify.com/api/token
+```
+
+This will return a JSON response containing a refresh_token.
 
 <Callout emoji="⚠️">
 
-**Disclaimer:** My site is my “breakable toy”. I enjoy and _intentionally_ change technology and try new patterns here. I'd encourage you to do the same and then write about why you made those choices.
+**Important:** This token is [valid indefinitely](https://github.com/spotify/web-api/issues/374) unless you revoke access, so we'll want to save this in an environment variable.
 
 </Callout>
 
-## Content Management
+### Using Spotify API
 
-I've moved my content from HTML to vanilla Markdown, to MDX, to a CMS, and back to MDX over the years. My content requirements as of now are:
+To make our life easier and make the code cleaner, create environment variables for: `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` and `SPOTIFY_REFRESH_TOKEN`. If you've never worked with NextJs environment variables before, [read this](https://nextjs.org/docs/basic-features/environment-variables).
 
-1. Written in Markdown¹
-2. Support for syntax highlighting, embedded tweets, and other components
-3. Managed through version control²
-4. Minimal external dependencies
-
-My goal was to simplify without giving up too many features.
-
-### Retrieving Content
-
-You can go surprisingly far with just Node.js and JavaScript. You'll notice a theme start to emerge in this blog post: fewer dependencies, and more copy/paste-able code.
-
-I removed the following libraries:
-
-- `contentlayer`
-- `next-contentlayer`
-- `rehype-autolink-headings`
-- `rehype-pretty-code`
-- `rehype-slug`
-- `remark-gfm`
-- `shiki`
-
-I was still able to maintain almost all of my content requirements with not much code. For example, here's how I'm able to retrieve all of my blog posts:
+We can now request an access token using our client ID, client secret, and **refresh_token**.
 
 ```js
-import fs from 'fs'
-import path from 'path'
+// lib/spotify.js
 
-function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
+import querystring from 'querystring'
+
+const client_id = process.env.SPOTIFY_CLIENT_ID
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET
+const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN
+
+const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64')
+const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`
+
+const getAccessToken = async () => {
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${basic}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: querystring.stringify({
+      grant_type: 'refresh_token',
+      refresh_token
+    })
+  })
+
+  return response.json()
+}
+```
+
+Use this access_token to securely request your top tracks. This assumes you added the user-top-read scope at the beginning.
+
+```js
+// lib/spotify.js
+
+import querystring from 'querystring'
+
+const client_id = process.env.SPOTIFY_CLIENT_ID
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET
+const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN
+
+const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64')
+const NOW_PLAYING_ENDPOINT =
+  'https://api.spotify.com/v1/me/player/currently-playing'
+const TOP_TRACKS_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks'
+const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
+
+const getAccessToken = async () => {
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${basic}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: querystring.stringify({
+      grant_type: 'refresh_token',
+      refresh_token
+    })
+  })
+
+  return response.json()
 }
 
-function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8')
-  return parseFrontmatter(rawContent)
-}
+export const getNowPlaying = async () => {
+  const { access_token } = await getAccessToken()
 
-function getMDXData(dir) {
-  let mdxFiles = getMDXFiles(dir)
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file))
-    let slug = path.basename(file, path.extname(file))
-    return {
-      metadata,
-      slug,
-      content
+  return fetch(NOW_PLAYING_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
     }
   })
 }
 
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'content'))
+export const getTopTracks = async () => {
+  const { access_token } = await getAccessToken()
+
+  return fetch(TOP_TRACKS_ENDPOINT, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  })
 }
 ```
 
-That's not too bad. So what am I missing? Well, Contentlayer gives you Fast Refresh for your content. That's nice. You can [workaround this](https://github.com/gaearon/overreacted.io/pull/797) or just use `@next/mdx`, which I might do. Contentlayer has other features, too, but they're unnecessary for my blog.
+### Creating an API Route
 
-### Remark and Rehype
+Let's test our communication with Spotify. First, create a new file at **pages/api/now-playing.ts**. Then, import the new function **getNowPLaying**.
 
-What about the AST modifications for auto-linking headings, adding IDs, and supporting syntax highlighting? I don't know why I didn't think of this before, but you can just… use React components.
+```js
+// pages/api/now-playing.ts
 
-```jsx
-import { highlight } from 'sugar-high' // 1KB new dependency
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { getNowPlaying } from '../../lib/spotify'
 
-// This replaces rehype-pretty-code and shiki
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children)
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
-}
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const response = await getNowPlaying()
 
-// This replaces rehype-slug
-function slugify(str) {
-  return str
-    .toString()
-    .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-}
-
-// This replaces rehype-autolink-headings
-function createHeading(level) {
-  return ({ children }) => {
-    let slug = slugify(children)
-    return React.createElement(
-      `h${level}`,
-      { id: slug },
-      [
-        React.createElement('a', {
-          href: `#${slug}`,
-          key: `link-${slug}`,
-          className: 'anchor'
-        })
-      ],
-      children
-    )
+  if (response.status === 204 || response.status > 400) {
+    return res.status(200).json({ isPlaying: false })
   }
-}
-```
 
-Oh and that `remark-gfm` I was using for the GitHub style Markdown tables? Again, you can use a React component for that.
+  const song = await response.json()
 
-```jsx
-function Table({ data }) {
-  let headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
-  ))
-  let rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ))
+  if (song.item === null) {
+    return res.status(200).json({ isPlaying: false })
+  }
 
-  return (
-    <table>
-      <thead>
-        <tr>{headers}</tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+  const isPlaying = song.is_playing
+  const title = song.item.name
+  const artist = song.item.artists.map(_artist => _artist.name).join(', ')
+  const album = song.item.album.name
+  const albumImageUrl = song.item.album.images[0].url
+  const songUrl = song.item.external_urls.spotify
+
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=60, stale-while-revalidate=30'
   )
+
+  return res.status(200).json({
+    album,
+    albumImageUrl,
+    artist,
+    isPlaying,
+    songUrl,
+    title
+  })
 }
 ```
 
-### Dependency Minimalism
+This returns all the song details if the user is playing the song. Otherwise, isPlaying will return false. You can handle both the conditions now. If the user is playing the song, then simply show the song otherwise display “Not Playing”.
 
-Why go through all of this work to delete dependencies?
-
-After having a blog for 10 years, I've gained a new appreciation for keeping things simple. Now, I'm not going _full_ minimalist here. I still want nice things. But I'm taking more opportunities to simplify and keep more code managed in the repo.
-
-Shoutout to [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) and [react-tweet](https://react-tweet.vercel.app/).
-
-## Performance
-
-Earlier this year, I moved this blog to the [Next.js App Router](https://nextjs.org/docs/app). That came with a subtle but important change: [React Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) by default.
-
-### Server Components
-
-Server Components are fun. For example, I can embed tweets inside blog posts:
-
-```jsx
-<Tweet id="1457032789883187201" />
-```
-
-The `Tweet` component handles both data fetching _and_ creating UI, all bundled up in a handy npm package (worth an exception here). Notably, additional Server Components added to my pages aren't increasing the client-side JavaScript bundle. This “templating” remains server-only.
-
-Another example is on [my work page](https://leerob.io/work). I love that I can drop this component in anywhere:
-
-```jsx
-async function Stars() {
-  let res = await fetch('https://api.github.com/repos/vercel/next.js')
-  let json = await res.json()
-  let count = Math.round(json.stargazers_count / 1000)
-  return `${count}k stars`
+```json
+{
+  "album": "Once Upon a Time in the West",
+  "albumImageUrl": "https://i.scdn.co/image/ab67616d0000b2731cb8ebda56d3dc6f926b1783",
+  "artist": "The White Buffalo",
+  "isPlaying": true,
+  "songUrl": "https://open.spotify.com/track/6p2yQve5trvfSlpIsMLYiS",
+  "title": "Stunt Driver"
 }
 ```
-
-### Partial Prerendering
-
-We're also working on something new in Next.js I'm now using here. It enables Next.js to prerender as much of the page as possible to static, leaving holes for dynamic components.
-
-For example, 98% of this blog post page is work that can be prerendering during the build. However, those view counts at the top of the page should be dynamic on every request. With [Partial Prerendering](https://www.partialprerendering.com/), the code for that looks like:
-
-```tsx
-async function Views({ slug }: { slug: string }) {
-  let views = await getViewsCount()
-  incrementViews(slug)
-  // ...
-}
-
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
-  // ...
-
-  return (
-    <section>
-      <Suspense fallback={<p className="h-5" />}>
-        <Views slug={post.slug} />
-      </Suspense>
-      <article>{post.content}</article>
-    </section>
-  )
-}
-```
-
-Everything up to the `Suspense` boundary, including the `fallback`, can be prerendered. Then, when the request happens, the static shell is instantly shown, followed by the dynamic content (views) streaming in after the fact.
-
-`getViewsCount` signals to Next.js that it's dynamic through `noStore()`:
-
-```jsx
-export async function getViewsCount() {
-  noStore();
-  let data = await sql`
-    SELECT slug, count
-    FROM views
-  `;
-
-  return data.rows as { slug: string; count: number }[];
-}
-```
-
-And `incrementViews` is a Server Action that can be called like any JavaScript function:
-
-```jsx
-'use server';
-
-import { sql } from '@vercel/postgres';
-
-export async function increment(slug: string) {
-  await sql`
-    INSERT INTO views (slug, count)
-    VALUES (${slug}, 1)
-    ON CONFLICT (slug)
-    DO UPDATE SET count = views.count + 1
-  `;
-}
-```
-
-I'm really happy with this approach. In the past, I had to include more dependencies like `swr` and add additional client-side JavaScript to achieve this. Partial Prerendering feels fast, without giving up the dynamic view counts that I love.
-
-## Opinions
-
-There's an assortment of other opinions I've included here now:
-
-- **Prefer `let` over `const`:** It's fewer characters to write. I'm lazy. Also, this isn't a production codebase here or anything. [Nice post here](https://overreacted.io/on-let-vs-const/) on this topic.
-- **Prefer copy/paste over the wrong abstraction:** I removed `date-fns`, `clsx` / `classnames`, and `gray-matter` for simple copy-pastable alternatives. Sure, they don't support every single feature. But, I don't need it. And if I do later, maybe I'll bring it back.
-- **Prefer loading SVGs as images:** Okay, this one has been hard for me. I've gotten so used to inlining SVGs in React. But starting to change my mind. [Related reading here](https://kurtextrem.de/posts/svg-in-js) and [on svg sprites](https://benadam.me/thoughts/react-svg-sprites/).
-- **Prefer larger files versus many components:** Just works for my brain better. Keep code that changes often close together. Your mileage may vary.
-- **Prefer colocating most things in `app/`:** Because, _why not_? Now that it's possible with the App Router I'm probably overusing this, but it feels nice.
-- **Prefer colocating styles with components:** Okay, I've been using Tailwind now for many years, but this is still worth mentioning. Similar to my content evolution, I went from CSS → Sass → styled-components → Chakra → Tailwind. [Give it a shot](https://adamwathan.me/css-utility-classes-and-separation-of-concerns). P.S. LLMs are very good at Tailwind.
 
 ## Conclusion
 
-As always, my entire site is [open source](https://github.com/leerob/leerob.io). Feel free to fork it and hack around.
-
-I've also simplified the cloning process by consolidating everything to a single [Postgres database](https://vercel.com/postgres). It's now where blog views, guestbook entries, and redirects are stored. I still like MySQL, just wanted an excuse to use Vercel Postgres more.
-
-See you next year for the 2024 blog refresh 🫡
-
----
-
-¹: Even when I moved to a CMS, I was still writing in MDX. For my developer blog, it's by far the easiest for me to maintain. I've gone the opposite route with custom components backed by a CMS on larger projects, but has always felt unnecessary here.
-
-²: Surprisingly, there still aren't many great git-like workflows for content that I've enjoyed using. Again, for my blog, having the complete version history tracked in git has been very helpful.
+Done! Now just pass this information to the interested components and be happy huhu. Any questions or suggestions, please let me know.

@@ -30,8 +30,11 @@ export default function BlogPage() {
             href={`/blog/${post.slug}`}
           >
             <div className="w-full flex flex-col">
-              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+              <p className="text-neutral-100 tracking-tight">
                 {post.metadata.title}
+              </p>
+              <p className="text-grey tracking-tight">
+                {post.metadata.summary}
               </p>
             </div>
           </Link>

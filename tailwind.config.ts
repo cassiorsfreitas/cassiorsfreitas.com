@@ -15,7 +15,10 @@ export default {
         grey: '#8F9BA8',
         gradient: {
           yellow: '#FFFF80',
-          pink: '#FF80BF'
+          pink: '#FF80BF',
+          purple: '#9580FF',
+          cyan: '#80FFEA',
+          green: '#8AFF80'
         }
       },
       typography: {

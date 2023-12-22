@@ -1,0 +1,128 @@
+---
+title: 'My VIM Cheat Sheet'
+publishedAt: '2022-04-21'
+summary: 'A Great Vim Cheat Sheet! I have compiled a list of essential Vim commands that I use every day.'
+image: '/images/vim-cheat-sheet/cover.jpg'
+---
+
+<Image
+  alt={`My VIM Cheat Sheet`}
+  src={`/images/vim-cheat-sheet/cover.jpg`}
+  width={2478 / 3}
+  height={2784 / 3}
+/>
+
+A Great Vim Cheat Sheet! I have compiled a list of essential Vim commands that I use every day.
+
+<Table
+  data={{
+    headers: [
+      'Basics',
+      'Keys',
+    ],
+    rows: [
+      ['Move 1 character', 'h / j / k / l'],
+      ['Move to next word', 'e'],
+      ['Move before next word', 'w'],
+      ['Jump to beginning of line', '0 -> w OR ^'],
+      ['Jump to end of line', '$'],
+      ['Jump to character', 'f'],
+      ['Jump to character before', 't'],
+    ],
+  }}
+/>
+
+<Table
+  data={{
+    headers: [
+      'Navigation',
+      'Keys',
+    ],
+    rows: [
+      ['Jump to beginning of next / prev line', '+ / -'],
+      ['Jump to end of line in edit mode', 'A'],
+      ['Search next / prev', '/ / ?',],
+      ['Go to beginning / end', 'gg / G'],
+      ['Go up / down half-page', 'Ctrl + u / d'],
+      ['Center to screen', 'zz'],
+      ['Go to next / prev block', '[ / ]'],
+      ['Go to next / prev block start / end', '( / )'],
+      ['Go to line [num]', '[num]G'],
+      ['Repeat search forward / backward', '; / ,'],
+      ['Jump to matching bracket', '%'],
+      ['Move cursor half-page up / down', 'Ctrl + u / d'],
+      ['Jump to upper / middle / bottom of editor', 'U / M / D'],
+      ['Go to definition', 'gd'],
+      ['Go to file', 'gf'],
+      ['Bookmark to letter', 'm[letter]'],
+      ['Go to bookmark', '`[letter]'],
+    ],
+  }}
+/>
+
+<Table
+  data={{
+    headers: [
+      'Selection',
+      'Keys',
+    ],
+    rows: [
+      ['Select (visual mode)', 'v'],
+      ['Select line', 'V'],
+      ['Column select', 'Ctrl + V',],
+      ['Column select and type', 'Ctrl + V - I'],
+      ['Select all occurrences', 'Ctrl + Shift + L'],
+      ['Add to selection', 'gb'],
+      ['Clear search', 'Ctrl + n'],
+    ],
+  }}
+/>
+
+<Table
+  data={{
+    headers: [
+      'Editing',
+      'Keys',
+    ],
+    rows: [
+      ['Edit (insert mode)', 'i'],
+      ['Append (insert mode)', 'a'],
+      ['Copy line up/down', 'yy - p / P',],
+      ['Delete line', 'dd'],
+      ['Insert line below', 'o'],
+      ['Insert line above', 'O'],
+      ['Delete character', 'x'],
+      ['Delete prev character', 'X'],
+      ['Replace character', 'r'],
+      ['Replace mode', 'R'],
+      ['Comment selection', 'Ctrl + / OR gc'],
+      ['Change case', '~'],
+      ['Repeat command', '.'],
+      ['Merge with next line', 'J'],
+      ['Surround', 'S'],
+    ],
+  }}
+/>
+
+<Table
+  data={{
+    headers: [
+      'Motion',
+      'Keys',
+    ],
+    rows: [
+      ['Select word', 'viw'],
+      ['Change word', 'ciw'],
+      ['Change block', 'cip',],
+      ['Delete to the next word', 'dw'],
+      ['Delete till', 'dt…'],
+      ['Change till', 'ct…'],
+      ['Change inner () / [] / {}', 'ci + ( / [ / {'],
+      ['Change inner tag', 'cit'],
+      ['Change surrounding (‘ -> “)', 'cs ’ ”'],
+      ['Surround line', 'ys + [surround]'],
+      ['Surround word', 'ys + iw + [surround]'],
+      ['Delete surround', 'ds + [surround]'],
+    ],
+  }}
+/>

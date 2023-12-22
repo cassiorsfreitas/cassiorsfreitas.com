@@ -8,7 +8,6 @@ import { highlight } from 'sugar-high'
 import React from 'react'
 
 function Table({ data }: any) {
-  console.log('HEREEEE!!!', data)
   const headers = data.headers.map((header: any, index: any) => (
     <th key={index}>{header}</th>
   ))

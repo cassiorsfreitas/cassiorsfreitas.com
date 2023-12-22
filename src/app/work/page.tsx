@@ -14,7 +14,9 @@ export default function Work() {
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Metyis</h2>
         <p className="text-grey">Software Engineer</p>
         <p className="text-grey">
-          <a href="https://www.hugoboss.com/">HUGO BOSS (HBDC) - 2023/Today</a>{' '}
+          <a href="https://www.hugoboss.com/">
+            HUGO BOSS (PORTUGAL) - 2024/Today
+          </a>{' '}
           - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis
           vel massa et cursus. Curabitur placerat, quam vitae vulputate tempor,
           tellus turpis ultrices metus, eget venenatis elit metus at erat.
@@ -26,12 +28,12 @@ export default function Work() {
           <a href="https://www.calvinklein.com/">
             TOMMY HILFIGER & CALVIN KLEIN (NETHERLANDS) - 2022/2023
           </a>{' '}
-          - I&apos;m currently working on the frontend using ReactJS and Redux.
-          My tasks include creating and optimizing interfaces, unit tests, and
-          storybooks. Additionally, I connect the components with GraphQL API
-          services to ensure seamless communication. On the backend, my focus
-          lies in developing and improving the API using NodeJS, aiming to
-          enhance its performance and functionality.
+          - I worked on the frontend using ReactJS and Redux. My tasks included
+          creating and optimizing interfaces, unit tests, and storybooks.
+          Additionally, I connected the components with GraphQL API services to
+          ensure seamless communication. On the backend, my focus was on
+          developing and improving the API using NodeJS, aiming to enhance its
+          performance and functionality.
         </p>
         <p className="text-grey mb-4">
           <a href="https://ambisig.com/">AMBISIG (PORTUGAL) - 2021/2022</a> - I

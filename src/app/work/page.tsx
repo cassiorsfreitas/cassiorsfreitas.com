@@ -19,7 +19,7 @@ export default function Work() {
           </a>
           <br />
           <a href="https://www.equans.com/">
-            EQUANS Powered by AI (SWITZERLAND) - 2024/Today
+            EQUANS Powered by AI (SWITZERLAND) - 2023/Today
           </a>
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />

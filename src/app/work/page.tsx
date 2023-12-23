@@ -16,10 +16,11 @@ export default function Work() {
         <p className="text-grey">
           <a href="https://www.hugoboss.com/">
             HUGO BOSS (PORTUGAL) - 2024/Today
-          </a>{' '}
-          - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mollis
-          vel massa et cursus. Curabitur placerat, quam vitae vulputate tempor,
-          tellus turpis ultrices metus, eget venenatis elit metus at erat.
+          </a>
+          <br />
+          <a href="https://www.equans.com/">
+            EQUANS Powered by AI (SWITZERLAND) - 2024/Today
+          </a>
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Agap2IT</h2>
@@ -28,12 +29,12 @@ export default function Work() {
           <a href="https://www.calvinklein.com/">
             TOMMY HILFIGER & CALVIN KLEIN (NETHERLANDS) - 2022/2023
           </a>{' '}
-          - I worked on the frontend using ReactJS and Redux. My tasks included
-          creating and optimizing interfaces, unit tests, and storybooks.
-          Additionally, I connected the components with GraphQL API services to
-          ensure seamless communication. On the backend, my focus was on
-          developing and improving the API using NodeJS, aiming to enhance its
-          performance and functionality.
+          - I worked on the frontend B2B e-commerce using ReactJS and Redux. My
+          tasks included creating and optimizing interfaces, unit tests, and
+          storybooks. Additionally, I connected the components with GraphQL API
+          layer to ensure seamless communication. On the backend, my focus was
+          on developing and improving the API using NodeJS, aiming to enhance
+          its performance and functionality.
         </p>
         <p className="text-grey mb-4">
           <a href="https://ambisig.com/">AMBISIG (PORTUGAL) - 2021/2022</a> - I

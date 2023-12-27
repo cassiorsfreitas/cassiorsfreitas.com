@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-useless-escape */
 /* eslint-disable react/display-name */
+import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
-import React from 'react'
+
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 function Table({ data }: any) {
   const headers = data.headers.map((header: any, index: any) => (

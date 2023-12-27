@@ -4,6 +4,7 @@ import { motion, LayoutGroup } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { Suspense } from 'react'
 import Link from 'next/link'
+
 import { cx } from '@/utils/classes'
 
 const navItems = {

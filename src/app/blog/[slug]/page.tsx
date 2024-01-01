@@ -1,13 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { CustomMDX } from '@/app/components/mdx'
 import { getBlogPosts } from '@/db/blog'
 
+interface Params {
+  params: {
+    slug: string
+  }
+}
+
 export async function generateMetadata({
   params
-}: any): Promise<Metadata | undefined> {
+}: Params): Promise<Metadata | undefined> {
   const post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) {
     return
@@ -73,7 +78,7 @@ function formatDate(date: string) {
   return `${fullDate} (${formattedDate})`
 }
 
-export default function Blog({ params }: any) {
+export default function Blog({ params }: Params) {
   const post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {

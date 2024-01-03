@@ -87,17 +87,17 @@ And ta-da! You get this cool tree of tokens in JSON flavour.
 ``` 
 ## Lexical Environment
 
-"Lexical” means *“having to do with words or grammar”*. So were are talking about the code you are writing properly, the syntax and vocabulary. Now, a lexical environment exists in programming languages in which *where* you write something is important. So, basically, the parser keeps an eye on where you put stuff.
+"Lexical” means *“having to do with words or grammar”*. So we are talking about the code you are writing properly, the syntax and vocabulary. Now, a lexical environment exists in programming languages in which *where* you write something is important. So, basically, the parser keeps an eye on where you put stuff.
 
-Let's say a function with a variable inside of it:
+Let's take a look at a function with an internal variable:
 ```js
   function potato() {
 	  var food = "potato";
   }
 ```
-The variable `food` is nestled within the function `potato` at a lexical level—that's its place within the code you're creating. But as we've learned, your code doesn't directly land in the computer; instead, the Syntax Parser translates it into something the computer comprehends. Nonetheless, based on where the code resides, we can get a sense of its location in the computer's memory and how it will interact with other variables and function and elements of the program.
+The variable `food` is nestled within the function `potato` at a lexical level—that's its place within the code you're creating. But as we've learned, your code doesn't directly land in the computer; instead, the Syntax Parser translates it into something the computer comprehends. Nonetheless, based on where the code resides, we can get a sense of location in the computer's memory and how it will interact with other variables, functions, and elements of the program.
 
-So, when were are talking about the lexical environment of something in the code, were are talking about where it is written and what surrounds it, got that? If so, now we can move on to the final topic and connect everything.
+So, when we are talking about the lexical environment of something in the code, we are talking about where it is written and what surrounds it, got that? If so, now we can move on to the final topic and connect everything you’ve been reading so far.
 
 ## Execution Context
 

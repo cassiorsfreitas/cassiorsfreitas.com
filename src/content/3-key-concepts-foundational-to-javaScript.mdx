@@ -29,7 +29,7 @@ Initially, any regular language (such as programming languages) can be identifie
 
 **Father, so if I put any letters together, will I have words?!**
 
-Right then, you grasp how crucial it is to have a proper sequence of letters and some basic rules to make actual words. letters only become words if they're in the dictionary, am I right? This matching or mapping process creates what we call a token.
+Right then, you grasp how crucial it is to have a proper sequence of letters and some basic rules to make actual words. Letters only become words if they're in the dictionary, am I right? This matching or mapping process creates what we call a token.
 
 And here we reach an important point, the creators of a regular language are responsible for defining the tokens and their **meanings**. Just as the token "Olá" means a greeting in the Portuguese dictionary.
 
@@ -95,7 +95,7 @@ Let's take a look at a function with an internal variable:
 	  var food = "potato";
   }
 ```
-The variable `food` is nestled within the function `potato` at a lexical level—that's its place within the code you're creating. But as we've learned, your code doesn't directly land in the computer; instead, the Syntax Parser translates it into something the computer comprehends. Nonetheless, based on where the code resides, we can get a sense of location in the computer's memory and how it will interact with other variables, functions, and elements of the program.
+The variable `food` is nestled within the function `potato` at a lexical level — that's its place within the code you're creating. But as we've learned, your code doesn't directly land in the computer; instead, the Syntax Parser translates it into something the computer comprehends. Nonetheless, based on where the code resides, we can get a sense of location in the computer's memory and how it will interact with other variables, functions, and elements of the program.
 
 So, when we are talking about the lexical environment of something in the code, we are talking about where it is written and what surrounds it, got that? If so, now we can move on to the final topic and connect everything you’ve been reading so far.
 
@@ -124,7 +124,7 @@ Just a friendly reminder:
       }
     };
   ``` 
-To link these three topics—Syntax Parser, Lexical Environment, and Execution Context—and lay the groundwork for more advanced topics like hoisting and closures, let's check under the hood what the engine offers, even if you haven't written a single line of code.
+To link these three topics — Syntax Parser, Lexical Environment, and Execution Context — and lay the groundwork for more advanced topics like hoisting and closures, let's check under the hood what the engine offers, even if you haven't written a single line of code.
 
 ## Global Environment and Global Object
 
@@ -146,7 +146,7 @@ Let's check this simple HTML page referencing a single script named `foo.js`.
 ``` 
 And now, this is our foo.js code example:
 ```js
-  // there's nothing here... sorry about that xD
+  // there's nothing here... sorry buddy xD
 ``` 
 If we serve the HTML, open the browser, and head to the devtools in the "console" tab, you'll notice no errors displayed:
 
@@ -174,7 +174,7 @@ Basically, in a global scope we have:
 
 <Image
   alt={`It's impossible to delve deeply into JavaScript without understanding at least these three fundamentals/concepts.`}
-  src={`/images/3-concepts/local.png`}
+  src={`/images/3-concepts/global.png`}
   width={2478 / 3}
   height={2784 / 3}
 />
@@ -183,7 +183,7 @@ And, in a local scope (inside a function) we have the reference to outside, I me
 
 <Image
   alt={`It's impossible to delve deeply into JavaScript without understanding at least these three fundamentals/concepts.`}
-  src={`/images/3-concepts/global.png`}
+  src={`/images/3-concepts/local.png`}
   width={2478 / 3}
   height={2784 / 3}
 />
@@ -192,6 +192,6 @@ So, we just learned something. An execution context was created at the global le
 
 ## Conclusion
 
-In the funny dance of JavaScript execution, the Syntax Parser kicks off the show by meticulously analysing the code, guiding the creation of an execution context within its respective lexical environment. This environment houses variables and functions, including a global object, tailored to the environment in which the code operates—be it a browser with its 'window' object or a Node.js server with 'global'.
+In the funny dance of JavaScript execution, the Syntax Parser kicks off the show by meticulously analysing the code, guiding the creation of an execution context within its respective lexical environment. This environment houses variables and functions, including a global object, tailored to the environment in which the code operates — be it a browser with its 'window' object or a Node.js server with 'global'.
 
 With a good grip on syntax parser, lexical environments, execution contexts, and the ins and outs of the global object, you're all set to dive into any JavaScript topic. These concepts lay a sturdy groundwork, opening doors for a deeper dive into mastering the language.

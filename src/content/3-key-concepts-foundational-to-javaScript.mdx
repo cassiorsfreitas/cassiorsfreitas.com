@@ -188,7 +188,7 @@ And, in a local scope (inside a function) we have the reference to outside, I me
   height={2784 / 3}
 />
 
-So, we just learned something. An execution context was created at the global level there's a global object, meaning that object is available to all the code running inside that window, inside that area, inside that JavaScript file, inside that lexical environment, dnd there's a special variable that the JavaScript engine created that sits inside the execution context called 'this'. And what we checked was that the global object inside internet browsers like Google Chrome or Firefox or whatever the case, is the window object and that it did create a variable called, 'this'. And at the global level those two things are equal.
+So, we just learned something. When we start running code, an "execution context" is formed at the global level. This context includes a global object that's accessible to all code within that window or lexical environment. Inside this execution context, there's a specific variable, 'this', which the JavaScript engine generates. In internet browsers such as Google Chrome or Firefox, the global object is the 'window' object, and it also contains the 'this' variable. At the global level, both the global object and 'this' refer to the same thing.
 
 ## Conclusion
 

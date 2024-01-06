@@ -6,9 +6,9 @@ export default function Work() {
       </h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Dedicated to shaping products that resonate with developers while
-          nurturing the growth of the next-gen tech enthusiasts. Let me share a
-          glimpse of my journey thus far.
+          Dedicated to shaping products that resonate with users while nurturing
+          the growth of the next-gen tech enthusiasts. I&apos;d like to give you
+          a peek into my journey up to now.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Metyis</h2>

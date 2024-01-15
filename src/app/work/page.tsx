@@ -6,9 +6,9 @@ export default function Work() {
       </h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Dedicated to shaping products that resonate with users while nurturing
-          the growth of the next-gen tech enthusiasts. I&apos;d like to give you
-          a peek into my journey up to now.
+          I love crafting products that connect with users and inspiring the
+          next generation of tech enthusiasts. Let me share a bit about my
+          journey so far.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Metyis</h2>
@@ -18,9 +18,16 @@ export default function Work() {
             HUGO BOSS (PORTUGAL) - 2024/Today
           </a>
           <br />
+        </p>
+        <p className="text-grey">
           <a href="https://www.equans.com/">
-            EQUANS Powered by AI (SWITZERLAND) - 2023/Today
-          </a>
+            EQUANS Powered by AI (SWITZERLAND) - 2023
+          </a>{' '}
+          - In this project, I worked closely with the infrastructure team to
+          create the frontend architecture and collaborating with the design
+          team to develop user interfaces using <strong>Next.js 14</strong> form
+          scratch. Additionally, I was involved in integrating process between
+          frontend and backend by Rest API.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Agap2IT</h2>
@@ -29,19 +36,21 @@ export default function Work() {
           <a href="https://www.calvinklein.com/">
             TOMMY HILFIGER & CALVIN KLEIN (NETHERLANDS) - 2022/2023
           </a>{' '}
-          - I worked on the frontend B2B e-commerce using ReactJS and Redux. My
-          tasks included creating and optimizing interfaces, unit tests, and
-          storybooks. Additionally, I connected the components with GraphQL API
-          layer to ensure seamless communication. On the backend, my focus was
-          on developing and improving the API using NodeJS, aiming to enhance
-          its performance and functionality.
+          - I worked on the frontend B2B e-commerce using{' '}
+          <strong>ReactJS</strong> and <strong>Redux</strong>. My tasks included
+          creating and optimizing interfaces, <strong>unit tests</strong>, and
+          storybooks. Additionally, I connected the components with{' '}
+          <strong>GraphQL</strong> API layer to ensure seamless communication.
+          On the backend, my focus was on developing and improving the API using{' '}
+          <strong>NodeJS</strong>, aiming to enhance its performance and
+          functionality.
         </p>
         <p className="text-grey mb-4">
           <a href="https://ambisig.com/">AMBISIG (PORTUGAL) - 2021/2022</a> - I
-          worked on developing React components and integrating the Rest API of
-          the Portuguese Government&apos;s Traffic Offense System with external
-          services such as Google API. My objective was to develop scalable and
-          testable code from scratch.
+          worked on developing <strong>React components</strong> and integrating
+          the Rest API of the Portuguese Government&apos;s Traffic Offense
+          System with external services such as <strong>Google API</strong>. My
+          objective was to develop scalable and testable code from scratch.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">
@@ -50,9 +59,9 @@ export default function Work() {
         <p className="text-grey">Full Stack Developer</p>
         <p className="text-grey">
           <a href="https://www.ype.ind.br/">YPÊ (PORTUGAL) - 2021</a> - I worked
-          on developing NextJs (ReactJS) projects on the frontend and Express
-          (NodeJS) on the backend, integrating them with AWS and Salesforce
-          services.
+          on developing <strong>NextJs (ReactJS)</strong> projects on the
+          frontend and Express (NodeJS) on the backend, integrating them with{' '}
+          <strong>AWS</strong> and Salesforce services.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Musique</h2>
@@ -64,7 +73,7 @@ export default function Work() {
           - As a software developer, I worked on the creation and presentation
           of the company&apos;s main website, the help center website, and the
           management of search engine optimizations (SEO) using HTML, CSS, JS,
-          and WordPress as a headless CMS.
+          and WordPress as a <strong>headless CMS</strong>.
         </p>
       </div>
     </section>

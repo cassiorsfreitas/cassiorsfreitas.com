@@ -4,7 +4,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:web": "npx cypress open",
+    "cypress:headless": "npx cypress run"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -22,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "autoprefixer": "^10.0.1",
+    "cypress": "^13.7.3",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",

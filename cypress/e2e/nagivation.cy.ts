@@ -6,6 +6,10 @@ const pageTitles = {
 }
 
 describe('Nagivations tests', () => {
+  after(() => {
+    cy.clearAllLocalStorage()
+  })
+
   it('Should navigate to the home page', () => {
     cy.visit('/')
     cy.get('nav').contains('home').click()

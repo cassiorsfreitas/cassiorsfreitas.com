@@ -16,8 +16,18 @@ export default function Work() {
         <p className="text-grey">
           <a href="https://www.hugoboss.com/">
             HUGO BOSS (PORTUGAL) - 2024/Today
-          </a>
-          <br />
+          </a>{' '}
+          - I was responsible for designing and developing the frontend
+          architecture of an internal cross-department tool using{' '}
+          <strong>Next.js</strong>,<strong>React</strong>, and{' '}
+          <strong>TypeScript</strong>. My work involved creating the entire user
+          interface and experience from scratch using Material UI and Figma. I
+          also focused on integrating the frontend with backend{' '}
+          <strong>REST APIs</strong>, working closely with the backend team to
+          ensure seamless data flow and functionality. The project aimed to
+          automate translation requests using AI, optimising workflows across
+          various departments. My contribution involved enhancing performance,
+          implementing responsive designs, and ensuring a scalable codebase.
         </p>
         <p className="text-grey">
           <a href="https://www.equans.com/">

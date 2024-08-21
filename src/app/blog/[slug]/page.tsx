@@ -24,6 +24,7 @@ export async function generateMetadata({
     summary: description,
     image
   } = post.metadata
+  console.log(description)
   const ogImage = image
     ? `https://cassiorsfreitas.com${image}`
     : `https://cassiorsfreitas.com/og?title=${title}`

@@ -19,7 +19,7 @@ export default function Work() {
           </a>{' '}
           - I was responsible for designing and developing the frontend
           architecture of an internal cross-department tool using{' '}
-          <strong>Next.js</strong>,<strong>React</strong>, and{' '}
+          <strong>Next.js</strong>, <strong>React</strong>, and{' '}
           <strong>TypeScript</strong>. My work involved creating the entire user
           interface and experience from scratch using Material UI and Figma. I
           also focused on integrating the frontend with backend{' '}

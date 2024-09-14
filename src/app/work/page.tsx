@@ -11,13 +11,17 @@ export default function Work() {
           journey so far.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">CI&T</h2>
+        <p className="text-grey">Senior Software Engineer</p>
+        <p className="text-grey">
+          <a href="https://ciandt.com/">CI&T (PORTUGAL) - 2024</a>
+        </p>
+        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Metyis</h2>
         <p className="text-grey">Software Engineer</p>
         <p className="text-grey">
-          <a href="https://www.hugoboss.com/">
-            HUGO BOSS (PORTUGAL) - 2024/Today
-          </a>{' '}
-          - I was responsible for designing and developing the frontend
+          <a href="https://www.hugoboss.com/">HUGO BOSS (PORTUGAL) - 2024</a> -
+          I was responsible for designing and developing the frontend
           architecture of an internal cross-department tool using{' '}
           <strong>Next.js</strong>, <strong>React</strong>, and{' '}
           <strong>TypeScript</strong>. My work involved creating the entire user

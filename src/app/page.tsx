@@ -5,23 +5,14 @@ export default function Home() {
         hey, I&apos;m <br /> Cássio Freitas
       </h1>
       <h2 className="text-lg lg:text-lg text-grey mt-2">
-        Software Engineer at{' '}
+        Senior Software Engineer at{' '}
         <a
           className="text-gray-600"
           target="_blank"
-          href="https://www.hugoboss.com/"
+          href="https://ciandt.com/"
           rel="noreferrer"
         >
-          @HugoBoss
-        </a>{' '}
-        through{' '}
-        <a
-          className="text-gray-600"
-          target="_blank"
-          href="https://www.metyis.com/"
-          rel="noreferrer"
-        >
-          @Metyis
+          @CI&T
         </a>
       </h2>
     </main>

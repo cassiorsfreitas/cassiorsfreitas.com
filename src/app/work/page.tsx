@@ -19,7 +19,7 @@ export default function Work() {
           </a>{' '}
           - I am responsible for designing and developing high-performance
           components in a React-based web application focused on product
-          sustainability. This tool connects auditors and suppliers to address
+          sustainability. This app connects auditors and suppliers to address
           critical areas such as wastewater management, chemical safety, and
           energy consumption, directly supporting the sustainability of raw
           materials. In this role, I work primarily with <strong>React</strong>,{' '}
@@ -27,10 +27,7 @@ export default function Work() {
           feature flagging with <strong>Growthbook</strong> and testing through{' '}
           <strong>Jest</strong>. My responsibilities include creating new,
           high-performance components and ensuring seamless micro frontend
-          integration with <strong>Java Spring APIs</strong>. Collaborating
-          closely with the backend and product teams, I focus on building a
-          maintainable and scalable codebase that supports our mission of
-          sustainable product development.
+          integration with <strong>Java Spring APIs</strong>.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Metyis</h2>

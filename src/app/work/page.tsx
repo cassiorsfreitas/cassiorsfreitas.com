@@ -14,7 +14,21 @@ export default function Work() {
         <h2 className="font-medium text-xl mb-1 tracking-tighter">CI&T</h2>
         <p className="text-grey">Senior Software Engineer</p>
         <p className="text-grey">
-          <a href="https://ciandt.com/">CI&T (PORTUGAL) - 2024</a>
+          <a href="https://ciandt.com/">INDITEX (SPAIN) - 2024</a> - I am
+          responsible for designing and developing high-performance components
+          in a React-based web application focused on product sustainability.
+          This tool connects auditors and suppliers to address critical areas
+          such as wastewater management, chemical safety, and energy
+          consumption, directly supporting the sustainability of raw materials.
+          In this role, I work primarily with <strong>React</strong>,{' '}
+          <strong>Redux</strong>, and <strong>React Query</strong>, integrating
+          feature flagging with <strong>Growthbook</strong> and testing through{' '}
+          <strong>Jest</strong>. My responsibilities include creating new,
+          high-performance components and ensuring seamless micro frontend
+          integration with <strong>Java Spring APIs</strong>. Collaborating
+          closely with the backend and product teams, I focus on building a
+          maintainable and scalable codebase that supports our mission of
+          sustainable product development.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Metyis</h2>

@@ -27,7 +27,9 @@ export default function Work() {
           <br /> - Webcam <a href="https://www.logitech.com/">Logitech</a> C920s
           Pro
           <br /> - Mouse <a href="https://www.logitech.com/">Logitech</a> MX
-          Master 3
+          Master 3 <br />- Chair{' '}
+          <a href="https://thunderx3.com/product/flex-pro-mesh/">ThunderX3</a>{' '}
+          Flex Pro Mesh
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
         <h2 className="font-medium text-xl mb-1 tracking-tighter">Coding</h2>

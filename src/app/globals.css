@@ -125,6 +125,14 @@ table {
   white-space: nowrap;
 }
 
+td,
+th {
+  word-wrap: break-word;
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  max-width: 300px;
+}
+
 .prose .callout > p {
   margin: 0 !important;
 }

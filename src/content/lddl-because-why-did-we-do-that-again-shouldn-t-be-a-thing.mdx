@@ -1,0 +1,142 @@
+---
+title: 'LDDL: Because "Why Did We Do That Again?" Should not Be a Thing'
+publishedAt: '2026-01-04'
+summary: 'Think of it as a safety net for your teams collective memory.'
+image: '/images/lddl-because-why-did-we-do-that-again-shouldn-t-be-a-thing/cover.png'
+---
+
+<Image
+  alt={`Think of it as a safety net for your teams collective memory.`}
+  src={`/images/lddl-because-why-did-we-do-that-again-shouldn-t-be-a-thing/cover.png`}
+  width={2478 / 3}
+  height={2784 / 3}
+  priority={true}
+/>
+
+Ever stared at your codebase and wondered why you chose Redis over Memcached? Or why that particular library made it into your dependencies? Yep, same.
+
+## The Problem I Was Tired Of
+
+We've all been there. You're onboarding a new developer, or revisiting code from six months ago, and someone asks: "Why did we use this library?" And you're left with... nothing. Maybe a vague commit message. Maybe a Slack thread lost in the digital void. Maybe just a shrug.
+
+The thing is, **we make dozens of technical decisions every week**. Some are huge (switching databases), others feel small (adding a new dependency). But they all have context, trade-offs, and reasons. And most of that knowledge just... evaporates (or stays deep hidden in the developer's mind).
+
+## The "Just Write ADRs" Advice
+
+Look, I know. Architecture Decision Records (ADRs) are great. I love them in theory. But in practice? When I'm deep in flow, about to commit code at 2 AM (like now, 01:35), the last thing I want to do is context-switch to write a markdown file from scratch.
+
+So decisions don't get documented. Context gets lost. And six months later, we're all confused.
+
+## What If Documentation Happened Automatically?
+
+That's the core idea behind LDDL (Local Dev Decision Log). What if your git workflow could gently nudge you to document decisions **at the exact moment you make them**?
+
+Here's how it works:
+
+### 1. Install Once, Forget About It
+
+```bash
+npm install -g lddl
+cd your-project
+lddl init
+```
+
+That's it. LDDL installs git hooks into your repository. Not invasive, not complicated. Just there when you need it.
+
+### 2. Make Changes Like Normal
+
+You add a new dependency. You commit. That's your normal workflow.
+
+```bash
+npm install express
+git add .
+git commit -m "Add express"
+```
+
+### 3. Get Prompted (At The Right Time)
+
+Here's where the thing happens. LDDL detects you added a dependency and asks:
+
+```
+📦 New dependencies detected: express
+
+Would you like to create a decision log for this? (y/N)
+```
+
+Say yes, and you get prompted for context:
+
+```
+Why did you add this dependency? (Context): Need a web framework for REST API
+What will you use it for? (Decision): Building the HTTP server
+Any trade-offs or impacts? (Consequences): Adds ~500KB to bundle size
+```
+
+And boom. Decision logged. No context switching. No separate file to create. Just natural conversation with your git workflow.
+
+### 4. Everything Lives In Your Repo
+
+The decision gets saved as a markdown file in `.lddl/decisions/`:
+
+```markdown
+# Add express dependency
+
+**Date:** 2026-01-04T00:15:00.000Z
+
+## Context
+
+Need a web framework for REST API
+
+## Decision
+
+Building the HTTP server
+
+## Consequences
+
+Adds ~500KB to bundle size
+```
+
+It's version-controlled. It travels with your code. It's searchable. And it's yours.
+
+## The Philosophy
+
+LDDL isn't trying to replace proper architectural documentation. It's not trying to force you into a process. It's just catching those small decisions that would otherwise slip through the cracks.
+
+Think of it as a safety net for your team's collective memory.
+
+### What I Learned Building This
+
+**Git hooks are powerful.** They let you hook into the developer's natural workflow without being disruptive. The key is to never block commits – LDDL always lets you skip prompts or ignore them entirely.
+
+**Timing is everything.** Prompting during `prepare-commit-msg` means the developer is already in "commit mode." The context is fresh in their mind. They haven't context-switched yet.
+
+**Local-first matters.** Everything lives in your repository. No external services, no API calls, no vendor lock-in. Just markdown files that work offline, forever.
+
+## What's Next
+
+Right now, LDDL detects dependency changes. But there's so much more:
+
+- 🏗️ Infrastructure changes (Dockerfile, CI configs)
+- 🏛️ Architecture shifts (new modules, folder structure)
+- 🔄 Process updates (new npm scripts, workflows)
+- 🤖 AI-powered context suggestions
+- 📊 Decision analytics and patterns
+
+The goal isn't to document everything. It's to make documenting the important stuff so frictionless that you actually do it.
+
+## The Real Win
+
+A few weeks ago, a teammate asked why we chose a particular library. Instead of saying "I don't remember," I typed:
+
+```bash
+lddl list
+```
+
+And there it was. Context, reasoning, trade-offs. All captured three months ago when the decision was fresh.
+
+That's the real win. Not perfect documentation. Just **enough context to not feel lost in your own codebase**.
+
+---
+
+[LDDL is open source and available on npm.](https://www.npmjs.com/package/lddl). So give it a try.
+
+Btw, Happy New Year!

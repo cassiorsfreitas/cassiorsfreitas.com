@@ -15,7 +15,7 @@ export default function Work() {
         <p className="text-grey">Senior Software Engineer</p>
         <p className="text-grey">
           <a href="https://www.inditex.com/itxcomweb/en/home">
-            INDITEX (SPAIN) - 2024
+            INDITEX (SPAIN) - Today
           </a>{' '}
           - I am responsible for designing and developing high-performance
           components in a React-based web application focused on product
